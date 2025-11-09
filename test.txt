@@ -1,0 +1,10 @@
+npx nodemon main.js -- -h localhost -p 8080 -c ./cache - команда для запуску  сервера 
+curl -v http://localhost:8080/404 -o 404_cat.jpeg - тестування методу GET	
+curl -v http://localhost:8080/404 -o 404_cat_from_cache.jpeg - перевірка роботи системи кешу
+curl -v -X PUT --data-binary "@test.jpg" http://localhost:8080/200 - метод PUT
+curl -v http://localhost:8080/200 -o 200_from_put.jpg - перевірка роботи методу PUT
+curl -v -X DELETE http://localhost:8080/404 - тестування методу DELETE
+curl -v -X DELETE http://localhost:8080/404 - перевірка обробки помилки з неіснуючим файлом
+curl -v http://localhost:8080/404 -o 404_cat_ref.jpeg - перевірка на повторний запит до сервера, після видалення з кешу
+curl -v -X POST http://localhost:8080/200 - обробка помилки про невірний метод 
+curl -v http://localhost:8080/999 - перевірка помилки, про некоректний запит
