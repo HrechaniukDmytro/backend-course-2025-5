@@ -66,7 +66,6 @@ async function fetchFromHttpCat(res, statusCode, filePath)
     } 
     catch (fetchErr) 
     {
-        // Помилка запиту на http.cat (наприклад, 404)
         console.error(`Помилка при запиті до http.cat: ${fetchErr.message}`);
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('Not Found');
@@ -105,7 +104,7 @@ async function handleDelete(req, res, statusCode)
 
     try 
     {
-        await fs.unlink(filePath); // Видаляємо файл
+        await fs.unlink(filePath); 
         console.log(`[CACHE DELETE] ${req.method} ${req.url} (видалено ${statusCode}.jpeg)`);
         res.writeHead(200, { 'Content-Type': 'text/plain' });
         res.end('Deleted');
